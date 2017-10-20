@@ -32,23 +32,39 @@ module QuickenParser
     end
 
     def cc_account_from_xml(xml)
-      currency     = REXML::XPath.first(xml, ".//CURDEF").text
-      bank_id      = nil
-      account_id   = REXML::XPath.first(xml, ".//ACCTID").text
-      account_type = "CREDITCARD"
+      currency        = REXML::XPath.first(xml, ".//CURDEF").text
+      bank_id         = nil
+      account_id      = REXML::XPath.first(xml, ".//ACCTID").text
+      account_type    = "CREDITCARD"
+      account_balance = REXML::XPath.first(xml, ".//BALAMT").text
 
-      build_account_details(xml, :currency => currency, :bank_id => bank_id, :number => account_id, :type => account_type)
+      build_account_details(
+        xml,
+        currency: currency,
+        bank_id:  bank_id,
+        number:   account_id,
+        type:     account_type,
+        balance:  "#{account_balance} #{currency}".to_money
+      )
     end
 
     def account_from_xml(xml)
-      currency     = REXML::XPath.first(xml, ".//CURDEF").text
-      bank_id      = REXML::XPath.first(xml, ".//BANKID").text
-      account_id   = REXML::XPath.first(xml, ".//ACCTID").text
-      account_type = REXML::XPath.first(xml, ".//ACCTTYPE").text
+      currency        = REXML::XPath.first(xml, ".//CURDEF").text
+      bank_id         = REXML::XPath.first(xml, ".//BANKID").text
+      account_id      = REXML::XPath.first(xml, ".//ACCTID").text
+      account_type    = REXML::XPath.first(xml, ".//ACCTTYPE").text
+      account_balance = REXML::XPath.first(xml, ".//BALAMT").text
 
-      build_account_details(xml, :currency => currency, :bank_id => bank_id, :number => account_id, :type => account_type)
+      build_account_details(
+        xml,
+        currency: currency,
+        bank_id:  bank_id,
+        number:   account_id,
+        type:     account_type,
+        balance:  "#{account_balance} #{currency}".to_money
+      )
     end
-    
+
     def build_account_details(xml, params={})
       account = Account.new(params)
 
