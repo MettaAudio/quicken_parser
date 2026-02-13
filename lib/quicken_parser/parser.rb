@@ -88,7 +88,8 @@ module QuickenParser
     end
 
     def parse_date(xmldate)
-      if timestamp = Time.parse(xmldate) then
+      timestamp = Time.parse(xmldate)
+      if timestamp
         timestamp
       else
         raise DateParsingError, "Could not parse XML formatted date #{xmldate.inspect}"
@@ -111,10 +112,10 @@ module QuickenParser
           c
         else
           case c
-          when 168, 170, 233;   ?e
+          when 168, 170, 233;   "e"
           when 195;             nil
-          when 244;             ?o
-          else;                 ?_
+          when 244;             "o"
+          else;                 "_"
           end
         end
       end

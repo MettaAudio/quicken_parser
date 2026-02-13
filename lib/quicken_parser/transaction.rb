@@ -3,7 +3,7 @@ module QuickenParser
     attr_accessor :type, :timestamp, :amount, :number, :name, :memo
 
     def initialize(args={})
-      args.each_pair do |key, value|
+      args.each do |key, value|
         send("#{key}=", value)
       end
 

@@ -3,7 +3,7 @@ module QuickenParser
     attr_accessor :number, :type, :currency, :bank_id, :transactions, :balance
 
     def initialize(args={})
-      args.each_pair do |key, value|
+      args.each do |key, value|
         send("#{key}=", value)
       end
       @transactions = Transactions.new

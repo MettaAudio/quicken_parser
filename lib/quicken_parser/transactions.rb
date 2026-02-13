@@ -5,7 +5,7 @@ module QuickenParser
 
     def initialize(args={})
       @txns = Array.new
-      args.each_pair do |key, value|
+      args.each do |key, value|
         send("#{key}=", value)
       end
     end
