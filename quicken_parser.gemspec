@@ -22,7 +22,9 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     s.add_development_dependency(%q<rake>)
+    s.add_development_dependency(%q<test-unit>)
     s.add_development_dependency(%q<thoughtbot-shoulda>)
     s.add_runtime_dependency(%q<FooBarWidget-money>, ["~> 2"])
+    s.add_runtime_dependency(%q<rexml>)
   end
 end
